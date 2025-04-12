@@ -1,0 +1,6 @@
+﻿  main.cpp
+  treeMethods.cpp
+C:\Users\PC\Desktop\Hard_IT\ASD_Labs\Lab_06\Lab_06\treeMethods.cpp(92,37): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\PC\Desktop\Hard_IT\ASD_Labs\Lab_06\Lab_06\treeMethods.cpp(176,12): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+  Lab_06.vcxproj -> C:\Users\PC\Desktop\Hard_IT\ASD_Labs\Lab_06\x64\Debug\Lab_06.exe

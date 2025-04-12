@@ -25,4 +25,19 @@ int main() {
 	Worker* worker2 = new Worker{ 2, {worker3} };
 	Worker* director = new Worker{ 1, {worker2} };
 	methodForTask16b(director);
+
+	//Задание 29
+	cout << "======> Задание 29 <======" << endl;
+	int n;
+	cin >> n; cin.ignore();
+	int s;
+	cin >> s; cin.ignore();
+	std::vector<int> coins;
+	for (int i = 0; i < s; i++) {
+		int vi;
+		cin >> vi; cin.ignore();
+		coins.push_back(vi);
+	}
+
+	methodForTask29(n, coins);
 }

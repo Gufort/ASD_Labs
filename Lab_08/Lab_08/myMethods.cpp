@@ -79,3 +79,24 @@ void methodForTask16b(Worker* root) {
 
 	std::cout << std::max(info[root].first, info[root].second) << std::endl;
 }
+
+void methodForTask29(int n, std::vector<int> coins) {
+
+	// if (s >= 1) coins.push_back(0); 
+	// if (s >= 2) coins.push_back(1); 
+
+	// for (int i = 2; i < s; i++) {
+	// 	int next = coins[i - 1] + coins[i - 2]; 
+	// 	coins.push_back(next);
+	// }
+
+	std::vector<int> res(n + 1, 0);
+	res[0] = 1;
+
+	for (int curr : coins) {
+		for (int i = curr; i <= n; i++) {
+			res[i] += res[i - curr];
+		}
+	}
+	std::cout << res[n] << std::endl;
+}
