@@ -17,7 +17,8 @@ struct Worker {
 void methodForTask3(const std::vector<int>&);
 void methodForTask7(int);
 void methodForTask16b(Worker*);
-void methodForTask29(int n, std::vector<int>);
+void methodForTask29(int, std::vector<int>);
+void methodForTask25(int, const std::vector<std::pair<int, int>>&);
 
 
 #endif // !MY_METHODS_H

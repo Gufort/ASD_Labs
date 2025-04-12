@@ -50,7 +50,7 @@ void methodForTask16b(Worker* root) {
 	std::stack<std::pair<Worker*, bool>> workers;
 	workers.push(std::make_pair(root, false));
 
-	std::map<Worker*, std::pair<int, int>> info;
+	std::map<Worker*, std::pair<int, int>> res;
 
 	while (!workers.empty()) {
 		auto curr = workers.top().first;
@@ -62,11 +62,11 @@ void methodForTask16b(Worker* root) {
 			int without_count = 0;
 
 			for (auto sub : curr->sub) {
-				with_count += info[sub].second;//Тут обрати внимание, мы не приглашаем подчиненных
-				without_count += std::max(info[sub].first, info[sub].second);
+				with_count += res[sub].second;//Тут обрати внимание, мы не приглашаем подчиненных
+				without_count += std::max(res[sub].first, res[sub].second);
 			}
 
-			info[curr] = std::make_pair(with_count, without_count);
+			res[curr] = std::make_pair(with_count, without_count);
 		}
 
 		else {
@@ -77,19 +77,39 @@ void methodForTask16b(Worker* root) {
 		}
 	}
 
-	std::cout << std::max(info[root].first, info[root].second) << std::endl;
+	std::cout << std::max(res[root].first, res[root].second) << std::endl;
+}
+
+void methodForTask25(int n, const std::vector<std::pair<int, int>>& table) {
+	std::vector<int> res(n + 1, 0);
+	std::vector<int> prices(n + 1, 0);
+
+	for (const auto& piece : table) {
+		int length; int value;
+		if(piece.first)
+			length = piece.first;
+		if (piece.second)
+			value = piece.second;
+
+		if (length <= n)
+			prices[length] = value;
+	}
+
+	//Считаем максимальные цены на всевозможных отрезках
+	for (int i = 1; i <= n; ++i) {
+		for (const auto& piece : table) {
+			int length = piece.first;
+			int value = piece.second;
+			if (length <= i) {
+				res[i] = std::max(res[i], res[i - length] + value);
+			}
+		}
+	}
+
+	std::cout << res[n] << std::endl;
 }
 
 void methodForTask29(int n, std::vector<int> coins) {
-
-	// if (s >= 1) coins.push_back(0); 
-	// if (s >= 2) coins.push_back(1); 
-
-	// for (int i = 2; i < s; i++) {
-	// 	int next = coins[i - 1] + coins[i - 2]; 
-	// 	coins.push_back(next);
-	// }
-
 	std::vector<int> res(n + 1, 0);
 	res[0] = 1;
 

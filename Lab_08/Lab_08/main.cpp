@@ -28,6 +28,21 @@ int main() {
 
 	//Задание 29
 	cout << "======> Задание 29 <======" << endl;
+	int l;
+	cin >> l; cin.ignore();
+	int n1;
+	cin >> n1; cin.ignore();
+	std::vector<std::pair<int, int>> vect;
+	for (int i = 0; i < n1; i++) {
+		int length;
+		int value;
+		cin >> length >> value; cin.ignore();
+		vect.push_back({ length, value });
+	}
+	methodForTask25(l, vect);
+
+	//Задание 29
+	cout << "======> Задание 29 <======" << endl;
 	int n;
 	cin >> n; cin.ignore();
 	int s;
