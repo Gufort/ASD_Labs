@@ -43,3 +43,39 @@ void methodForTask7(int m) {
 		n++;
 	}
 }
+
+void methodForTask16b(Worker* root) {
+	if (!root) return;
+
+	std::stack<std::pair<Worker*, bool>> workers;
+	workers.push(std::make_pair(root, false));
+
+	std::map<Worker*, std::pair<int, int>> info;
+
+	while (!workers.empty()) {
+		auto curr = workers.top().first;
+		auto invited = workers.top().second;
+		workers.pop();
+
+		if (invited) {
+			int with_count = 1;
+			int without_count = 0;
+
+			for (auto sub : curr->sub) {
+				with_count += info[sub].second;//Тут обрати внимание, мы не приглашаем подчиненных
+				without_count += std::max(info[sub].first, info[sub].second);
+			}
+
+			info[curr] = std::make_pair(with_count, without_count);
+		}
+
+		else {
+			workers.push(std::make_pair(curr, true));
+
+			for (auto sub : curr->sub)
+				workers.push(std::make_pair(sub, false));
+		}
+	}
+
+	std::cout << std::max(info[root].first, info[root].second) << std::endl;
+}
