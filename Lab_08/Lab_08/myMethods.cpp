@@ -17,3 +17,29 @@ void methodForTask3(const std::vector<int>& seq) {
 
 	std::cout << res[0][seq.size() - 1];
 }
+
+//Решаем динамикой, ибо мы рассматриваем подряды исходного ряда
+void methodForTask7(int m) {
+	std::vector<int> res;
+	res.push_back(1);
+
+	int n = 1;
+
+	while (true) {
+		auto count = res[n - 1];
+
+		for (int k = m; k <= n; k++) {
+			if (n - k == 0) count += 1; // если у нас один целый красный блок
+			else if (n - k - 1 >= 0) count += res[n - k - 1];
+		}
+
+		res.push_back(count);
+
+		if (count >= 1000000) {
+			std::cout << n << std::endl;
+			break;
+		}
+
+		n++;
+	}
+}

@@ -6,6 +6,7 @@
 #include <algorithm>
 
 void methodForTask3(const std::vector<int>&);
+void methodForTask7(int);
 
 #endif // !MY_METHODS_H
 
