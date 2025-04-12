@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Users\PC\Desktop\Hard_IT\АСД\Lab-03\Lab-03\main.cpp(27,16): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+  Создание кода
+  10 of 261 functions ( 3.8%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  Lab-03.vcxproj -> C:\Users\PC\Desktop\Hard_IT\АСД\Lab-03\x64\Release\Lab-03.exe

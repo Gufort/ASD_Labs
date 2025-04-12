@@ -1,0 +1,6 @@
+﻿  main.cpp
+  methods.cpp
+  Создание кода...
+C:\Users\PC\Desktop\Hard_IT\АСД\lesson1\lesson1\methods.cpp(24,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\PC\Desktop\Hard_IT\АСД\lesson1\lesson1\methods.cpp(73,21): warning C4244: аргумент: преобразование "__int64" в "int", возможна потеря данных
+  lesson1.vcxproj -> C:\Users\PC\Desktop\Hard_IT\АСД\lesson1\x64\Debug\lesson1.exe
