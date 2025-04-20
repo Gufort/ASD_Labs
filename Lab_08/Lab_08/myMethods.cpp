@@ -80,6 +80,63 @@ void methodForTask16b(Worker* root) {
 	std::cout << std::max(res[root].first, res[root].second) << std::endl;
 }
 
+
+void methodForTask22(const std::string& input) {
+	std::vector<char> digits;
+	std::vector<char> zero;
+	for (char ch : input)
+	{
+		if (ch == '0') zero.push_back('0');
+		else if (std::isdigit(ch))
+			digits.push_back(ch);
+	}
+	
+	//std::sort(digits.begin(), digits.end());
+
+	if (digits.size() + zero.size() < 2) {
+		std::cout << "-1 -1" << std::endl;
+		return;
+	}
+
+	std::string A = "";
+	std::string B = "";
+	bool addToA = false;
+
+	for (int i = 0; i < digits.size(); ++i) {
+		if (!addToA) {
+			A += digits[i];
+			addToA = true;
+		}
+
+		else {
+			B += digits[i];
+		}
+
+		if (B.size() >= 18) {
+			addToA = false;
+		}
+	}
+
+	for (int i = 0; i < zero.size(); i++) {
+		if (!addToA) {
+			A += zero[i];
+			addToA = true;
+		}
+		else B += zero[i];
+
+		if (B.size() >= 18) {
+			addToA = false;
+		}
+	}
+
+	if (B.size() >= 18) {
+		std::cout << "-1 -1" << std::endl;
+		return;
+	}
+
+	std::cout << A << " " << B << std::endl;
+}
+
 void methodForTask25(int n, const std::vector<std::pair<int, int>>& table) {
 	std::vector<int> res(n + 1, 0);
 	std::vector<int> prices(n + 1, 0);

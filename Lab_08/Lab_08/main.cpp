@@ -26,8 +26,14 @@ int main() {
 	Worker* director = new Worker{ 1, {worker2} };
 	methodForTask16b(director);
 
+
+	//Задание 22
+	cout << "======> Задание 22 <======" << endl;
+	string input = "3 334555556677777777777778888888999999";
+	methodForTask22(input);
+
 	//Задание 29
-	cout << "======> Задание 29 <======" << endl;
+	cout << "======> Задание 25 <======" << endl;
 	int l;
 	cin >> l; cin.ignore();
 	int n1;

@@ -17,6 +17,7 @@ struct Worker {
 void methodForTask3(const std::vector<int>&);
 void methodForTask7(int);
 void methodForTask16b(Worker*);
+void methodForTask22(const std::string&);
 void methodForTask29(int, std::vector<int>);
 void methodForTask25(int, const std::vector<std::pair<int, int>>&);
 
