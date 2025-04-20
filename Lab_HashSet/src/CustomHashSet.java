@@ -20,8 +20,7 @@ public class CustomHashSet<T> {
 
         //Все клетки пустые
         _states = new char[_capacity];
-        for(int i = 0; i < capacity; i++)
-            _states[i] = '0';
+        Arrays.fill(_states, '0');
     }
 
     public CustomHashSet(int capacity) {
@@ -39,8 +38,8 @@ public class CustomHashSet<T> {
     public int countOfCollisions() { return _countOfCollisions; }
 
     public boolean insert(T element) {
-        if (_size >= _capacity)
-            throw new IllegalStateException("Hash table is full");
+        if (_size >= _capacity * 0.50)
+            resize();
 
         int position = hash(element);
         int start = position;
@@ -53,10 +52,11 @@ public class CustomHashSet<T> {
                 return true;
             }
 
-            else if(_states[position] == '1' &&
+            //Убрано с целью реализации множества с повторами
+            /*else if(_states[position] == '1' &&
                     _compare.compare((T)_elements[position], element) == 0) {
                 return false;
-            }
+            }*/
 
             _countOfCollisions++;
             position = (position + 1) % _capacity;
@@ -83,18 +83,57 @@ public class CustomHashSet<T> {
         }
     }
 
-    public boolean find(T element) {
+    public int find(T element) {
         int position = hash(element);
         int start = position;
+        int count = 0;
 
         while(true) {
             if(_states[position] == '0')
-                return false;
+                break;
 
             else if(_states[position] == '1' && _compare.compare((T)_elements[position], element) == 0)
-                return true;
+                count++;
             position = (position + 1) % _capacity;
         }
+
+        return count;
+    }
+
+    public void resize() {
+        int newCapacity = _capacity * 2;
+        Object[] oldElements = _elements;
+        char[] oldStates = _states;
+
+        _elements = new Object[newCapacity];
+        _states = new char[newCapacity];
+        Arrays.fill(_states, '0');
+
+        _capacity = newCapacity;
+        _size = 0;
+        _countOfCollisions = 0;
+
+        for (int i = 0; i < oldElements.length; i++) {
+            if(oldStates[i] == '1')
+                insert((T)oldElements[i]);
+        }
+    }
+
+    public void clear() {
+        _capacity = 10;
+        _size = 0;
+        _elements = new Object[_capacity];
+        Arrays.fill(_elements, '0');
+        _states = new char[_capacity];
+        Arrays.fill(_states, '0');
+        _countOfCollisions = 0;
+    }
+
+    public void printInfo(){
+        System.out.println("Information about HashSet:\n" +
+                "Сapacity: " + _capacity + "\n" +
+                "Size: " + _size + "\n" +
+                "CountOfCollisions: " + _countOfCollisions);
     }
 
     public void print(){
