@@ -26,6 +26,7 @@ public:
 				return post->second;
 			else throw DatabaseException("Post not found!");
 		}
+		else throw DatabaseException("Post not found!");
 	}
 
 	void insert_user(const User& user) override {
@@ -34,7 +35,7 @@ public:
 	}
 
 	void insert_post(const Post& post) override {
-		if (_posts.count(post.OwnerId) == 0 || _posts[post.OwnerId].count(post.Id) == 0) {
+		if (_posts[post.OwnerId].count(post.Id) == 0) {
 			_posts[post.OwnerId][post.Id] = post;
 		}
 	}
@@ -51,15 +52,30 @@ public:
 	}
 	
 	void like_post(int ownerId, int postId) override {
-		throw DatabaseException("!!!!!!!!!!");
+		auto owner = _posts.find(ownerId);
+		if (owner != _posts.end()) {
+			auto post = owner->second.find(postId);
+			if (post != owner->second.end())
+				post->second.Likes++;
+		}
 	}
 
 	void unlike_post(int ownerId, int postId) override {
-		throw DatabaseException("!!!!!!!!!!");
+		auto owner = _posts.find(ownerId);
+		if (owner != _posts.end()) {
+			auto post = owner->second.find(postId);
+			if (post != owner->second.end())
+				post->second.Likes--;
+		}
 	}
 
 	void repost_post(int ownerId, int postId) override {
-		throw DatabaseException("!!!!!!!!!!");
+		auto owner = _posts.find(ownerId);
+		if (owner != _posts.end()) {
+			auto post = owner->second.find(postId);
+			if (post != owner->second.end())
+				post->second.Reposts++;
+		}
 	}
 
 	std::vector<Post> top_k_post_by_likes(int k, int ownerId, int dateBegin, int dateEnd) override {
