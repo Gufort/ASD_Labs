@@ -24,21 +24,30 @@ public:
 			auto post = owner->second.find(postId);
 			if (post != owner->second.end())
 				return post->second;
+			else throw DatabaseException("Post not found!");
 		}
-		else throw DatabaseException("Post not found!");
 	}
 
 	void insert_user(const User& user) override {
-		if (_users.count(user.Id) != 1)
+		if (_users.count(user.Id) == 0)
 			_users[user.Id] = user;
 	}
 
 	void insert_post(const Post& post) override {
-		throw DatabaseException("!!!!!!!!!!");
+		if (_posts.count(post.OwnerId) == 0 || _posts[post.OwnerId].count(post.Id) == 0) {
+			_posts[post.OwnerId][post.Id] = post;
+		}
 	}
 
 	void delete_post(int ownerId, int postId) override {
-		throw DatabaseException("!!!!!!!!!!");
+		auto owner = _posts.find(ownerId);
+		if (owner == _posts.end()) return;
+
+		auto post = owner->second.find(postId);
+		if (post == owner->second.end()) return;
+
+		owner->second.erase(post);
+		if (owner->second.empty()) _posts.erase(owner);
 	}
 	
 	void like_post(int ownerId, int postId) override {
