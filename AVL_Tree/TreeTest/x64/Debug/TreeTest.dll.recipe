@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\PC\Desktop\Hard_IT\АСД\AVL_Tree\x64\Debug\AVL_Tree.exe</FullPath>
+      <FullPath>C:\Users\PC\Desktop\Hard_IT\ASD_Labs\AVL_Tree\x64\Debug\AVL_Tree.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\PC\Desktop\Hard_IT\АСД\AVL_Tree\x64\Debug\TreeTest.dll</FullPath>
+      <FullPath>C:\Users\PC\Desktop\Hard_IT\ASD_Labs\AVL_Tree\x64\Debug\TreeTest.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
